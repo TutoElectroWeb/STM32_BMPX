@@ -451,3 +451,9 @@ ou via les options de compilation (`-DBMPX_MAX_CONSECUTIVE_ERRORS=5`).
 | Version | Date       | Changements                                                                                                                                                                                                    |
 | ------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 0.9.0   | 2026-02-22 | Standard v0.9 : `initialized`, `consecutive_errors`, `last_hal_error`, `async_busy`, `sample_interval_ms`, `BMP_DeInit`, `StatusToString #ifdef`, `TriggerEvery` 3 params, `conf.h DEFAULT_SAMPLE_INTERVAL_MS` |
+
+---
+
+## Version
+
+**v0.9.0**

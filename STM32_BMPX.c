@@ -195,7 +195,7 @@ static BMP_Status bmp280_wait_nvm(BMP_Handle_t *bmp, uint32_t timeout_ms)
     BMP_Status s = read8(bmp, BMP280_REG_STATUS, &st);
     if (s != BMP_OK) return s;
     if ((st & 0x01u) == 0u) return BMP_OK; // im_update==0
-    HAL_Delay(2);
+    HAL_Delay(2); /* init: NVM copy wait */
   }
   bmp->last_error = BMP_ERR_TIMEOUT;
   return BMP_ERR_TIMEOUT;
@@ -210,7 +210,7 @@ static BMP_Status bmp280_wait_measuring(BMP_Handle_t *bmp, uint32_t timeout_ms)
     BMP_Status s = read8(bmp, BMP280_REG_STATUS, &st);
     if (s != BMP_OK) return s;
     if ((st & 0x08u) == 0u) return BMP_OK; // measuring==0
-    HAL_Delay(2);
+    HAL_Delay(2); /* convert: polling status mesure */
   }
   bmp->last_error = BMP_ERR_TIMEOUT;
   return BMP_ERR_TIMEOUT;
@@ -259,7 +259,7 @@ static BMP_Status bmp280_configure(BMP_Handle_t *bmp)
   // Reset
   BMP_Status s = write8(bmp, BMP280_REG_RESET, BMP280_RESET_CMD);
   if (s != BMP_OK) return s;
-  HAL_Delay(5);
+  HAL_Delay(5); /* init: post-reset timing */
   s = bmp280_wait_nvm(bmp, 100);
   if (s != BMP_OK) return s;
 
